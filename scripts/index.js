@@ -5,7 +5,7 @@ import STORE from './store.js';
 
 function generateQuestionsString(question) {
   // Here we will make the questions string to put in the form.
-  // -------------------------------------------------------------THIS IS WHERE WE WOULD CHANGE HOW IT TEMPLATES.------------------------------------------
+  // -------------------------------------------------------THIS IS WHERE WE WOULD CHANGE HOW IT TEMPLATES.------------------------------------------
   return `<input type="radio" id="A" name="questionOne" aria-pressed="false" value="${question[STORE.currentQuestion].answers[0]}" required>
   <label for="A"> ${question[STORE.currentQuestion].answers[0]} </label>
   <br>
@@ -65,8 +65,8 @@ function generateResponseScreenString(database) {
 }
 */
 function generateResultScreenString(database) {
-  // -------------------------------------------------------The conditionals for this string should change----------------------------------------------------
-  // -------------------------------------------------------according to what you want your result to be...--------------------------------------------------- 
+  // --------------------------------------------------The conditionals for this string should change----------------------------------------------------
+  // ---------------------------------------------------according to what you want your result to be...--------------------------------------------------- 
   if (database.result.resultOneCounter === 5) {
     return `<div class="result-screen" id="">
   <h2> Perfect! </h2>
@@ -102,7 +102,7 @@ function generateStartScreen() {
   let html = generateStartScreenString(STORE);
   $(`main`).html(html);
   handleQuizStartButton();
-  // ---------------------------------------------------------------We need to reset these values anytime we start or startover!-------------------------
+  // ------------------------------------------------------We need to reset these values anytime we start or startover!-------------------------
   STORE.currentQuestion = 0;
   STORE.questionsCorrect = 0;
   STORE.resultOneCounter = 0;
@@ -180,7 +180,7 @@ function handleStartOver() {
 }
 
 function handleKeyPressSpace() {
-  //-------------------------------------------------------------------This Handles the ARIA to press space on an answer----------------------------------
+  //-------------------------------------------------------This Handles the ARIA to press space on an answer----------------------------------
   $(`main form input`).keydown(function () {
     {
       let pressedKey = $(event.which);
