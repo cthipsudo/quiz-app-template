@@ -11,7 +11,8 @@ body main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-image: url("/images/creative-background.jpg");
+    background-color: antiquewhite;
+    background-image: url("");
     background-size: cover;
     height: 100%;
     background-repeat: no-repeat;
@@ -20,6 +21,10 @@ body main div{
     width: 86%;
     border: 4px solid #f36f21;
     background-color: #fff;
+}
+
+body main div span{
+    align-self: center;
 }
 
 body main h1{
@@ -103,7 +108,7 @@ span{
 }
 .result-screen span{
     align-self: center;
-    font-size: 4em;
+    font-size: 3em;
 }
 
 @media all and (min-width:800px){
