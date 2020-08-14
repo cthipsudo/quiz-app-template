@@ -33,7 +33,7 @@ function generateStartScreenString(store) {
 }
 
 function generateQuestionScreenString(database) {
-  return `<div class="question-screen">
+  return `<div class="question-screen fade-in-right">
   <h2>${database.questions[database.currentQuestion].name}</h2>
       <form class="options">
         ${generateQuestionsString(database.questions)}
