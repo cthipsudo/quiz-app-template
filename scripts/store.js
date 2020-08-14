@@ -1,50 +1,41 @@
 /* eslint-disable indent, no-undef, quotes*/
-'use strict';
 
 const STORE = {
     currentQuestion: 0,
     questionsCorrect: 0,
     questionsRightOrWrong: false,
     startScreen: {
-        title: `Do you have what it takes to be America's Next top Magician?`,
-        header: `Take this quiz and find out!`
+        title: `Are you Zach Morris or are you "Zach Morris"?`,
+        header: `Take this quiz and find out!`,
+        image: "/images/zach-gif.gif"
     },
     questions: [
         {
-            name: "In your opinion, which of these is the ideal pet?",
-            answers: ["Dog", "Cat", "Rabbit","Snake"],
-            correctAnswer: true
+            name: "Do you like to make Bad Jokes?",
+            answers: ["Yes", "Not really", "Bad Jokes are only bad if you think they're bad...", "They're GOOD if you ask me"],
+            correctAnswer: ["Yes", "Bad Jokes are only bad if you think they're bad...", "They're GOOD if you ask me"]
         },
         {
-            name: "Choose a color, ANY color.",
-            answers: ["Black", "Brown", "Periwinkle","White"],
-            correctAnswer: true
+            name: "Are you a coffee snob?",
+            answers: ["Call me a Coffee Aficionado", "I only drink topo chicos", "One Cold Brew Latte, please...", "I don't drink coffee"],
+            correctAnswer: ["I only drink topo chicos", "One Cold Brew Latte, please...", "Call me a Coffee Aficionado"]
         },
         {
-            name: "Where do you keep your scarves?",
-            answers: ["In your closet.", "Around your neck.", "Up my sleeve.","You don't have a scarf."],
-            correctAnswer: true
+            name: "Do you collect records?",
+            answers: ["Yea, man.", "I only collect pokemon", "Ptffhh!! I use Apple Music","Guess you could say I'm sort of a world record myself ;)"],
+            correctAnswer: ["Yea man.", "I only collect pokemon", "Guess you could say I'm sort of a world record myself ;)"]
         },
         {
-            name: "What is your magic weapon of choice?",
-            answers: ["Hammer", "Baseball Bat", "Wand","Sword"],
-            correctAnswer: true
+            name: "What kind of music do you listen to?",
+            answers: ["Country", `Demi Lavato`, "Rock","Hip-Hop"],
+            correctAnswer: [`Demi Lavato`, "Rock","Hip-Hop"]
         },
         {
-            name: "What are the suits in deck?",
-            answers: ["Ace, Spade, Club, Heart", "Ex, Oh, Ex, Oh", "Diamond, Spade, Club, Heart","Circle, Square, Triangle, Cross"],
-            correctAnswer: true
+            name: "What's your poison?",
+            answers: ["Craft Beers like IPAS and Stouts", "Wine", `"Lemon Drops"`, "Craft Beers like Goses and Sours bro"],
+            correctAnswer: ["Craft Beers like IPAS and Stouts", "Craft Beers like Goses and Sours bro"]
         },
-        {
-            name: "Where are you most comfortable?",
-            answers: ["In Bed.", "In the streets.", "On stage","On a tropical island."],
-            correctAnswer: true
-        },
-        {
-            name: "What is your prestige?",
-            answers: ["Landing on the moon.", "Climbing Mount Everest", "Sawing a woman in half","What is a prestige, again?"],
-            correctAnswer: true
-        },
+    
     ],
     responses:[
         {
@@ -85,7 +76,8 @@ const STORE = {
     ],
     result:{
         title: "TOTAL SCORE",
-        response:['HOW DID YOU DO THAT? Oh right, a magician never reveals their secret.','Im sure your mother is very proud.'],
-        image: "magic-finale.png"
+        response:[`A perfect score! What?!?\n Sounds like you really are Zach from ROI ONLINE and if you are. I just want you to know that I love you and wish you the best. \n-With High Hopes, Oscar`, `You missed a few but hey, you're still Zach Morris in my heart.`,`Oh so you're THAT Zach Morris...`],
+        image: [`/images/Zach-and-Oscar.png`,`/images/Zach.png`,`/images/FakeZake.jpg`],
+        zachCounter: 0
     }
 };

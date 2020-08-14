@@ -11,15 +11,15 @@ body main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-image: url("woodbackground.jpg");
+    background-image: url("/images/creative-background.jpg");
     background-size: cover;
     height: 100%;
     background-repeat: no-repeat;
 }
 body main div{
-    width: 70%;
-    border: 1px solid #000;
-    border-radius: 21px;
+    width: 86%;
+    border: 4px solid #f36f21;
+    background-color: #fff;
 }
 
 body main h1{
@@ -42,7 +42,11 @@ font-size: 21px;
 main div button {
     margin: 15px;
     float: right;
-    border-radius: 14px;
+    border-radius: 0;
+    background-color: #f36f21;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.4);
+    border-style: none;
+    color: #fff;
 }
 
 body main div img{
@@ -60,18 +64,18 @@ h1{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: lightgray;
+    background-color: #fff;
 }
 
 .question-screen{
-    background-color: darkgray;
+    background-color: #fff;
     padding: 14px;
     display: flex;
     flex-direction: column; 
 }
 
 .answer-screen{
-    background-color: lightgray;
+    background-color: #fff;
     padding: 14px;
     display: flex;
     flex-direction: column; 
@@ -124,7 +128,6 @@ font-size: 35px;
 main div button {
     margin: 15px;
     float: right;
-    border-radius: 14px;
     font-size: 28px;
     padding: 17px;
 }

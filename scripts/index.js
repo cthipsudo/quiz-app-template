@@ -1,12 +1,13 @@
 /* eslint-disable indent */
 /* eslint-disable no-undef, quotes, no-console */
 
-'use strict';
+
 
 function generateQuestionsString(question) {
   // Here we will make the questions string to put in the form. 
   let value = "";
   let value2nd = "";
+  /*
   if (STORE.currentQuestion === 2-1) {
     value = "true";
     value2nd = "false";
@@ -17,21 +18,21 @@ function generateQuestionsString(question) {
     value = "false";
     value2nd = "false";
   }
-
-  return `<input type="radio" id="A" name="questionOne" aria-pressed="false" value="${value}" required>
+  */
+  return `<input type="radio" id="A" name="questionOne" aria-pressed="false" value="${question[STORE.currentQuestion].answers[0]}" required>
   <label for="A"> ${question[STORE.currentQuestion].answers[0]} </label>
   <br>
-  <input type="radio" id="B" name="questionOne" aria-pressed="false" value="${value2nd}">
+  <input type="radio" id="B" name="questionOne" aria-pressed="false" value="${question[STORE.currentQuestion].answers[1]}">
   <label for="B"> ${question[STORE.currentQuestion].answers[1]} </label>
   <br>
-  <input type="radio" id="C" name="questionOne" aria-pressed="false" value="true">
+  <input type="radio" id="C" name="questionOne" aria-pressed="false" value="${question[STORE.currentQuestion].answers[2]}">
   <label for="C"> ${question[STORE.currentQuestion].answers[2]} </label>
   <br>
-  <input type="radio" id="D" name="questionOne" aria-pressed="false" value="${value}">
+  <input type="radio" id="D" name="questionOne" aria-pressed="false" value="${question[STORE.currentQuestion].answers[3]}">
   <label for="D"> ${question[STORE.currentQuestion].answers[3]} </label>
   <br>
 
-  <button type="submit" id="submit-button" aria-pressed="false" >SUBMIT</button>`;
+  <button type="submit" id="submit-button" aria-pressed="false">NEXT</button>`;
 }
 
 function generateStartScreenString(store) {
@@ -39,7 +40,7 @@ function generateStartScreenString(store) {
   //console.log(store);
   return `<div class="start-screen ">
   <h1>${store.startScreen.title}</h1>
-  <img src="magic hat.png">
+  <img src="${store.startScreen.image}">
   <button type="button" label="start">START</button>
   <h2>${store.startScreen.header}</h2>
 </div>`;
@@ -50,10 +51,10 @@ function generateQuestionScreenString(database) {
   // Takes the value from generateQuestionsString and puts it in the form spot.
   //console.log(STORE.questions[database.currentQuestion].name);
   return `<div class="question-screen">
-  <span id="score">CORRECT: ${STORE.questionsCorrect}/7</span>
-  <h2>${STORE.questions[STORE.currentQuestion].name}</h2>
+  <span id="score">CORRECT: ${database.questionsCorrect}/7</span>
+  <h2>${database.questions[database.currentQuestion].name}</h2>
       <form class="options">
-        ${generateQuestionsString(STORE.questions)}
+        ${generateQuestionsString(database.questions)}
       </form>
 </div>`;
 }
@@ -81,20 +82,25 @@ function generateResponseScreenString(database) {
 }
 function generateResultScreenString(database) {
 
-  if (database.questionsCorrect === 7) {
+  if (database.result.zachCounter === 5) {
     return `<div class="result-screen" id="">
-  <h2> TOTAL SCORE </h2>
-  <img src="${database.result.image}">
-  <span>${STORE.questionsCorrect}/7</span>
+  <h2> Perfect! </h2>
+  <img src="${database.result.image[0]}">
   <h3 id="answer-binary"> ${database.result.response[0]}</h3>
   <button>Try Again?</button>
 </div>`;
-  }
-  else {
+  } else if (database.result.zachCounter >= 1 ){
+    return `<div class="result-screen" id="">
+    <h2> TOTAL SCORE </h2>
+    <img src="${database.result.image[1]}">
+    <h3 id="answer-binary"> ${database.result.response[1]}</h3>
+    <button>Try Again?</button>
+  </div>`;
+  } else {
     return `<div class="result-screen" id="">
   <h2> TOTAL SCORE </h2>
-  <span>${STORE.questionsCorrect}/7</span>
-  <h3 id="answer-binary"> ${database.result.response[1]}</h3>
+  <img src="${database.result.image[2]}">
+  <h3 id="answer-binary"> ${database.result.response[2]}</h3>
   <button>Try Again?</button>
 </div>`;
   }
@@ -169,18 +175,19 @@ function handleAnswerSubmit() {
     // checks that value against the actual correct answer
     // changed the value of questionsRightOrWrong to either true or false
 
-    if (userAnswer === STORE.questions[STORE.currentQuestion - 1].correctAnswer) {
+    if (STORE.questions[STORE.currentQuestion-1].correctAnswer.includes(userAnswer)) {
       //do something
       STORE.questionsRightOrWrong = true;
       //console.log("user has the right answer");
       STORE.questionsCorrect++;
+      STORE.result.zachCounter++;
     } else {
       console.log("user has the wrong answer");
       STORE.questionsRightOrWrong = false;
     }
-    if (STORE.currentQuestion <= 6) {
+    if (STORE.currentQuestion < STORE.questions.length) {
 
-      generateResponseScreen();
+      generateQuestionScreen();
     }
 
     else { generateResultsScreen(); }
@@ -223,25 +230,20 @@ function getValueFromCheckedAnswer() {
   let input = $(`input[name="questionOne"]:checked`).val();
   console.log(`${input} test test`);
   let answer = "";
-  if (input === "true") {
-    answer = true;
-  } else if (input === undefined){
+  if (input === undefined){
     answer = undefined;
   }
-  else { answer = false; }
+  else { answer = input; }
   //console.log(`${input} this is type of ${answer}`);
   //console.log(($(`input[name="questionOne"]:checked`).val()).parseBoolean());
   return answer;
 }
 
-// this function will be our callback when the page loads. it's responsible for
-// initially rendering the shopping list, and activating our individual functions
-// that handle new item submission and user clicks on the "check" and "delete" buttons
-// for individual shopping list items.
+
 function main() {
   generateStartScreen();
 
 }
 
-// when the page loads, call `handleShoppingList`
+// when the page loads, call `generateStartScreen`
 $(main);
