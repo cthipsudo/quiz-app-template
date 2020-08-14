@@ -51,7 +51,6 @@ function generateQuestionScreenString(database) {
   // Takes the value from generateQuestionsString and puts it in the form spot.
   //console.log(STORE.questions[database.currentQuestion].name);
   return `<div class="question-screen">
-  <span id="score">CORRECT: ${database.questionsCorrect}/7</span>
   <h2>${database.questions[database.currentQuestion].name}</h2>
       <form class="options">
         ${generateQuestionsString(database.questions)}
